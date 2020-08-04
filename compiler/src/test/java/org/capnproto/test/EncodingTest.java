@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
+import org.capnproto.test.Test;
+
 public class EncodingTest {
     @org.junit.Test
     public void testAllTypes() {

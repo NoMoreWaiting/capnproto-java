@@ -1,6 +1,7 @@
 package org.capnproto.test;
 
 import org.capnproto.*;
+import org.capnproto.test.Test;
 import org.junit.Assert;
 
 import java.io.UnsupportedEncodingException;
@@ -17,7 +18,7 @@ public class TestUtil {
 
     public static final double DELTA = 1e-15;
 
-    public static void initTestMessage(Test.TestAllTypes.Builder builder) {
+    public static void initTestMessage(org.capnproto.test.Test.TestAllTypes.Builder builder) {
         builder.setVoidField(org.capnproto.Void.VOID);
         builder.setBoolField(true);
         builder.setInt8Field((byte) -123);

@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0">
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.capnproto</groupId>
     <artifactId>examples</artifactId>
@@ -30,64 +31,66 @@
         </developer>
     </developers>
     <properties>
-      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>11</maven.compiler.source>
     </properties>
     <dependencies>
         <dependency>
-          <groupId>org.capnproto</groupId>
-          <artifactId>runtime</artifactId>
-          <version>0.1.6-SNAPSHOT</version>
+            <groupId>org.capnproto</groupId>
+            <artifactId>runtime</artifactId>
+            <version>0.1.6-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
     <build>
-      <plugins>
-        <plugin>
-          <artifactId>maven-antrun-plugin</artifactId>
-          <version>3.0.0</version>
-          <executions>
-            <execution>
-              <id>generate-sources</id>
-              <phase>generate-sources</phase>
-              <configuration>
-                <target>
-                  <mkdir dir="src/main/generated"/>
-                  <exec executable="capnp" failonerror="true">
-                    <arg value="compile"/>
-                    <arg value="-I"/>
-                    <arg value="../compiler/src/main/schema/"/>
-                    <arg value="--src-prefix=src/main/schema/"/>
-                    <arg value="-o../capnpc-java:src/main/generated"/>
-                    <arg value="src/main/schema/addressbook.capnp"/>
-                  </exec>
-                </target>
-              </configuration>
-              <goals>
-                <goal>run</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
+        <plugins>
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <id>generate-sources</id>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <target>
+                                <mkdir dir="src/main/generated"/>
+                                <exec executable="capnp" failonerror="true">
+                                    <arg value="compile"/>
+                                    <arg value="-I"/>
+                                    <arg value="../compiler/src/main/schema/"/>
+                                    <arg value="--src-prefix=src/main/schema/"/>
+                                    <arg value="-o../capnpc-java:src/main/generated"/>
+                                    <arg value="src/main/schema/addressbook.capnp"/>
+                                </exec>
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
 
-        <plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>build-helper-maven-plugin</artifactId>
-          <version>3.1.0</version>
-          <executions>
-            <execution>
-              <id>add-generated-sources</id>
-              <phase>generate-sources</phase>
-              <goals>
-                <goal>add-source</goal>
-              </goals>
-              <configuration>
-                <sources>
-                  <source>src/main/generated</source>
-                </sources>
-              </configuration>
-            </execution>
-          </executions>
-        </plugin>
-      </plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>add-generated-sources</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>src/main/generated</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
     </build>
 </project>
